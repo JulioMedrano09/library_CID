@@ -1,0 +1,10 @@
+Sector agregar libro
+
+
+
+<form action="{% url "add_book"%}"method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+<button type="submit">Agregar</button>
+
+</form>

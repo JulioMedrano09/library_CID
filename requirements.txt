@@ -1,0 +1,4 @@
+Django==5.1.1
+Pillow==10.4.0
+pylance==0.18.2
+crispy-tailwind==1.0.3

@@ -1,0 +1,110 @@
+{% extends "baseListas.html" %}
+{% block content %}
+<h1 class="text-3xl font-bold underline">
+    List of books
+  </h1>
+  
+  <br>
+<ul>
+      {% for book in books %}
+        <article class="flex bg-white transition hover:shadow-xl">
+          <div class="rotate-180 p-2 [writing-mode:_vertical-lr]">
+            <time
+              datetime="2022-10-10"
+              class="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900">
+              <span>Publish date</span>
+              <span class="w-px flex-1 bg-gray-900/10"></span>
+              <span>{{ book.publish_date }}</span>
+            </time>
+           </div>
+        
+            <div class="hidden sm:block sm:basis-56">
+            {% if  book.images %}
+            <img
+              alt="{{ book.title }}"
+              src="{{ book.images.url }}"
+              class="aspect-square h-full w-full object-cover"
+            />
+
+            {% endif %}
+           </div>
+        
+           <div class="flex flex-1 flex-col justify-between">
+            <div class="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
+              <a href="#">
+                <h3 class="font-bold uppercase text-gray-900">
+                {{ book.title }} 
+                </h3>
+              </a>
+              <br>
+              <div class="flow-root">
+                <dl class="-my-3 divide-y divide-gray-100 text-sm">
+                  <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                    <dt class="font-medium text-gray-900">Author</dt>
+                    <dd class="text-gray-700 sm:col-span-2">{{ book.author }}</dd>
+                  </div>
+              
+                  <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                    <dt class="font-medium text-gray-900">Category</dt>
+                    <dd class="text-gray-700 sm:col-span-2">{{ book.category }}</dd>
+                  </div>
+              
+                  <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                    <dt class="font-medium text-gray-900">Editorial</dt>
+                    <dd class="text-gray-700 sm:col-span-2">{{book.editorial}}</dd>
+                  </div>
+              
+                  <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                    <dt class="font-medium text-gray-900">Pages</dt>
+                    <dd class="text-gray-700 sm:col-span-2">{{ book.pages }}</dd>
+                  </div>
+              
+                  <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                    <dt class="font-medium text-gray-900">Description</dt>
+                    <dd class="text-gray-700 sm:col-span-2">
+                      {{book.description}}</dd>
+                  </div>
+
+                  <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                    <dt class="font-medium text-gray-900">Description</dt>
+                    <dd class="text-gray-700 sm:col-span-2">
+                      {{book.files.url}}</dd>
+                  </div>
+                </dl>
+              </div>
+              
+            </div>
+            <!--Botton modal-->
+            <div class="sm:flex sm:items-end sm:justify-end boton-modal">
+              <a href="{{ book.files.url }}" class="block bg-yellow-300 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-400">
+                <label for="btn-modal">Read document</label>
+              </a>
+              
+            </div>
+            <!--fin botton modal-->
+              
+            <!--Ventana modal-->
+            <input type="checkbox" id="btn-modal">
+             <div class="container-modal">
+                 <div class="content-modal">
+                  <!--<embed  class="pdfview" src="{{ book.files.url }}" type="application/pdf"></embed>-->
+                               
+                  <a href="{{ book.files.url }}" type="application/pdf"  class="pdfview">
+                    Haga click para ver el documento
+                  </a>
+                  
+
+                  <div class="btn-cerrar">
+                    <label for="btn-modal"> cerrar</label>
+                  </div>
+                </div>
+                <label for="btn-modal" class="cerrar-modal"></label>
+              </div>
+              
+           </div>
+           </article>
+            <br>
+      {% endfor %}
+</ul>
+{% endblock content %}
+
